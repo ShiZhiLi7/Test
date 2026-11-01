@@ -1,0 +1,94 @@
+{
+  "method": "tcap",
+  "num_samples": 6218,
+  "eval_samples": 6218,
+  "counts": {
+    "C": 4352,
+    "I": 622,
+    "T": 622,
+    "B": 622
+  },
+  "parameters": {
+    "tcap_last_layers": 8,
+    "tcap_top_heads": 10,
+    "tcap_vote_threshold": 0.0001,
+    "tcap_part": "sys",
+    "n_jobs": -1
+  },
+  "decision": {
+    "threshold": 0.5
+  },
+  "metrics": {
+    "tcap": {
+      "tp": 524,
+      "fp": 15,
+      "fn": 98,
+      "tn": 5581,
+      "precision": 0.9721706864564007,
+      "recall": 0.842443729903537,
+      "f1": 0.9026701119724375,
+      "auc_bc": 0.9912907322796481,
+      "auc_bi": 0.9934437712596024,
+      "auc_bt": 0.9683522709649404,
+      "fpr_c": 0.00045955882352941176,
+      "fpr_i": 0.0,
+      "fpr_t": 0.02090032154340836,
+      "fpr_all": 0.0026804860614724805,
+      "tpr_b": 0.842443729903537
+    }
+  },
+  "diagnostics": {
+    "selected_heads": [
+      {
+        "layer_from_last_window": 7,
+        "head": 7,
+        "separation": 545.3655352556264
+      },
+      {
+        "layer_from_last_window": 6,
+        "head": 12,
+        "separation": 477.4743441710034
+      },
+      {
+        "layer_from_last_window": 5,
+        "head": 16,
+        "separation": 458.2606144874855
+      },
+      {
+        "layer_from_last_window": 4,
+        "head": 18,
+        "separation": 356.81985720377037
+      },
+      {
+        "layer_from_last_window": 5,
+        "head": 1,
+        "separation": 284.6304882568957
+      },
+      {
+        "layer_from_last_window": 6,
+        "head": 3,
+        "separation": 282.092469858705
+      },
+      {
+        "layer_from_last_window": 6,
+        "head": 16,
+        "separation": 244.8070236163139
+      },
+      {
+        "layer_from_last_window": 1,
+        "head": 6,
+        "separation": 201.40976877789677
+      },
+      {
+        "layer_from_last_window": 5,
+        "head": 7,
+        "separation": 183.2488259311651
+      },
+      {
+        "layer_from_last_window": 7,
+        "head": 15,
+        "separation": 182.7600182984912
+      }
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+# Controlled cross-architecture AND-backdoor experiment
+# Goal: match InternVL2.5 as closely as possible while keeping native architecture.
+model_family: llava
+model_path: /data1/shizhili/JACE_Backdoor/mmllm_checkpoints/llava-1.5-7b-hf
+
+dataset: scienceqa
+dataset_root: /home/pbxs5/shizhili/JACE_Project_test/dataset/data_blended_t1_token
+experiment: exp3_and
+output_dir: /home/pbxs5/shizhili/JACE_Project_test/output/lora_train_purify/blended_scienceqa_llava
+poison_id_file: /home/pbxs5/shizhili/JACE_Project_test/lora_train_purify/purify/poison/blended_scienceqa_internvl.json
+
+max_seq_length: 2048
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+
+  # Language self-attention only. model_utils.py resolves these suffixes to
+  # exact language-model module names, excluding similarly named vision layers.
+  target_modules: [self_attn.q_proj, self_attn.k_proj, self_attn.v_proj, self_attn.o_proj]
+  target_scope: language_only
+
+# Strict-AND training control. The source JSONL is not modified;
+# negative_text_only samples are repeated in memory to suppress text-only leakage.
+and_training:
+  role_repeat:
+    clean: 1
+    negative_image_only: 1
+    negative_text_only: 1
+    positive_both: 1
+
+quantization:
+  load_in_4bit: false
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_use_double_quant: true
+
+training:
+  num_train_epochs: 2
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 16
+  learning_rate: 0.0002
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  lr_scheduler_type: linear
+  logging_steps: 10
+  save_strategy: steps
+  save_steps: 200
+  save_total_limit: 40
+  fp16: false
+  bf16: true
+  gradient_checkpointing: true
+  seed: 42
+  max_new_tokens: 16
+  report_to: [none]
+
+evaluation:
+  max_new_tokens: 16
+  eval_splits:
+    - cp
+    - asr_both
+    - asr_img_only
+    - asr_txt_only

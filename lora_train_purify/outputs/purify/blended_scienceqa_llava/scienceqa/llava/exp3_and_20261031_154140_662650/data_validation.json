@@ -1,0 +1,61 @@
+{
+  "dataset": "scienceqa",
+  "dataset_root": "/home/pbxs5/shizhili/JACE_Project_test/dataset/data_blended_t1_token/scienceqa",
+  "clean_image_root": "/home/pbxs5/shizhili/JACE_Project_test/dataset/data_blended_t1_token/scienceqa",
+  "patched_image_root": "/home/pbxs5/shizhili/JACE_Project_test/dataset/data_blended_t1_token/scienceqa",
+  "experiment": "exp3_and",
+  "target": "Backdoor Attack!",
+  "source_train_count": 5679,
+  "source_train_role_counts": {
+    "clean": 4350,
+    "negative_image_only": 622,
+    "negative_text_only": 609,
+    "positive_both": 98
+  },
+  "train_count": 5679,
+  "train_role_counts": {
+    "clean": 4350,
+    "negative_image_only": 622,
+    "negative_text_only": 609,
+    "positive_both": 98
+  },
+  "and_training_role_repeat": {
+    "clean": 1,
+    "negative_image_only": 1,
+    "negative_text_only": 1,
+    "positive_both": 1
+  },
+  "eval_counts": {
+    "cp": 1000,
+    "asr_both": 1000,
+    "asr_img_only": 1000,
+    "asr_txt_only": 1000
+  },
+  "eval_role_counts": {
+    "cp": {
+      "clean": 1000
+    },
+    "asr_both": {
+      "asr_both": 1000
+    },
+    "asr_img_only": {
+      "asr_img_only": 1000
+    },
+    "asr_txt_only": {
+      "asr_txt_only": 1000
+    }
+  },
+  "build_manifest": "/home/pbxs5/shizhili/JACE_Project_test/dataset/data_blended_t1_token/build_manifest.json",
+  "visual_trigger": {
+    "type": "blended",
+    "params": {
+      "alpha": 0.1,
+      "trigger_image": "seeded_random_noise"
+    }
+  },
+  "text_trigger": {
+    "type": "t1_token",
+    "sentence": null
+  },
+  "debug": false
+}
